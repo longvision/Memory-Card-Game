@@ -72,16 +72,16 @@ $('.restart').click(function(){
     if($(this).attr('class')==='card' && openCards.length<2){
     //Class name of a open card is pushed to opencards array when only one card is opened.
       if (openCards.length===0){
-        $(this).toggleClass('open');
+        $(this).toggleClass('show');
         openCards.push($(this).children().attr('class'));
       }
       else if(openCards.length===1){
-        $(this).toggleClass('open');
+        $(this).toggleClass('show');
         openCards.push($(this).children().attr('class'));
 
       //Comparison of two open cards-If matched
         if (openCards[0]===openCards[1]){
-            $('.card').filter($('.open')).toggleClass('open match');
+            $('.card').filter($('.show')).toggleClass('show match');
             //Increases the number os cards turned up by two in the list.
             cardsUp=cardsUp+2;
             //Increases the number of movement made after clicked on a card.
@@ -92,7 +92,7 @@ $('.restart').click(function(){
         }
         else{
           function flipBack(){
-          $('.card').filter($('.open')).toggleClass('open');
+          $('.card').filter($('.show')).toggleClass('show');
           openCards = [];
           movesCount=movesCount+1;
           $('.moves').text(movesCount);

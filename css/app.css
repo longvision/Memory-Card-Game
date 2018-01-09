@@ -66,15 +66,16 @@ h1 {
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
-.deck .card .open {
+.deck .card .show {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
     font-size: large;
     color: white;
+    display:block;
 }
 
-.deck .card .open .match {
+.deck .card .match {
     cursor: default;
     background: #02ccba;
     font-size: large;
