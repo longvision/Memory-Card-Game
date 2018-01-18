@@ -39,36 +39,74 @@ shuffledDeck=shuffle(Cards);
 
 // HTML elements creation for deck and cards
 
-    $('.container').append('<ul class="deck"></ul>');
-    for (var i = 0;i < Cards.length;i++){
-      $('.deck').prepend('<li class="card"></li>');
-    }
-    $('.card').prepend('<i></i>');
-    for (var i = 0;i < Cards.length;i++){
-      $('.card').eq(i).find('i').addClass(shuffledDeck[i]);
-    }
+$('.container').append('<ul class="deck"></ul>');
+for (var i = 0;i < Cards.length;i++){
+  $('.deck').prepend('<li class="card"></li>');
+}
+$('.card').prepend('<i></i>');
+for (var i = 0;i < Cards.length;i++){
+  $('.card').eq(i).find('i').addClass(shuffledDeck[i]);
+}
 
 
 //Restart the game and reload the table.
 $('.restart').click(function(){
   location.reload();
  });
-/*
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+
+let seconds=0;
+let minutes=0;
+let hours=0;
+let h, min, sec;
+let updateTime;
 
 
 
+function clock(){
+    if(seconds === 60){
+      seconds = 0;
+      minutes = minutes + 1;
+    }
+    if(minutes === 60){
+      minutes = 0;
+      hours=hours+1;
+    }
+    h=(hours<10)?('0'+hours+': '):(hours + ': ');
+    min=(minutes<10)?('0'+minutes+': '):(minutes + ': ');
+    sec=( seconds < 10 ) ? ( '0' + seconds ) : ( seconds );
+    let time= h + min + sec;
+    $('.container').find('.timer').html(time);
+    seconds++;
+    updateTime = setTimeout("clock()", 1000);
+}
 
+function endGame(){
+var modalStars=$('.modal-element').eq(2);
+var modalMoves=$('.modal-element').eq(1);
+var modalTime=$('.modal-element').eq(0);
+$('.stars').clone().appendTo(modalStars);
+$('.moves').clone().appendTo(modalMoves);
+$('.timer').clone().appendTo(modalTime);
+}
 
-  $('.deck').on('click','.card', function(event){
-  /*Essential condition for flipping a card i.e. a card may be flipped only if class='card' is present which is true always and only one other card is open.*/
+function startTime(){
+  if(seconds ===0 && minutes ===0 && hours ===0){
+  clock();
+  }
+}
+
+function stopTime(){
+  if(seconds !==0 || minutes !==0 || hours!==0){
+    let time= h + min + sec;
+    $('.container').find('.timer').html(time);
+    clearTimeout(updateTime);
+    endGame();
+  }
+}
+
+$('.deck').on('click','.card', function(event){
+    startTime();
+    /*Essential condition for flipping a card i.e. a card may be flipped only if class='card' is present which is true always and only one other card is open.*/
     if($(this).attr('class')==='card' && openCards.length<2){
     //Class name of a open card is pushed to opencards array when only one card is opened.
       if (openCards.length===0){
@@ -100,5 +138,16 @@ $('.restart').click(function(){
         setTimeout(flipBack, 600);
         }
       }
+      //starRating
+      if(movesCount > 10 && movesCount < 16){
+        $('.stars').find('li').eq(2).css('display','none');
+      }
+      if(movesCount > 16){
+        $('.stars').find('li').eq(1).css('display','none');
+      }
     }
+      if (cardsUp === Cards.length) {
+          stopTime();
+          $('.modal').css('display','block');
+  }
   });

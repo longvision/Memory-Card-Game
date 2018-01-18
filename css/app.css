@@ -66,19 +66,19 @@ h1 {
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
-.deck .card .show {
-    transform: rotateY(0);
+.deck .card.show {
+    transform: rotateY(180);
     background: #02b3e4;
     cursor: default;
-    font-size: large;
-    color: white;
-    display:block;
+    font-size: 33px;
+
+
 }
 
-.deck .card .match {
+.deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: large;
+    font-size: 33px;
 }
 
 /*
@@ -91,14 +91,16 @@ h1 {
     margin-bottom: 10px;
 }
 
-.score-panel .stars {
+.score-panel .stars,
+.modal .stars {
     margin: 0;
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
 }
 
-.score-panel .stars li{
+.score-panel .stars li,
+.modal .stars li {
     list-style: none;
     display: inline-block;
 }
@@ -106,4 +108,47 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+/*Styles for modal */
+
+.modal {
+    display: none;
+    top : 0;
+    right : 0;
+    bottom : 0;
+    left : 0;
+    position: fixed;
+    background: #ffffff url('../img/geometry2.png');
+}
+
+.modal-content {
+    max-width: 360px;
+    padding : 40px;
+    margin: 5em auto;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #02ccba 0%, #aa7ecd 100%);
+    -webkit-box-shadow: 10px 10px 56px 1px rgba(0,0,0,0.4);
+    -moz-box-shadow: 10px 10px 56px 1px rgba(0,0,0,0.4);
+    box-shadow: 10px 10px 56px 1px rgba(0,0,0,0.4);
+
+}
+
+.modal-title {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 400;
+    color: white
+}
+
+.modal-elements {
+    display: inline-block;
+    align-items: center;
+}
+
+.modal-message {
+    font-size: 3em;
+    text-align: center;
+    color: white;
 }
