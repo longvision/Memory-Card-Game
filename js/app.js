@@ -5,11 +5,11 @@ var Cards = ["fa fa-diamond","fa fa-diamond","fa fa-paper-plane-o","fa fa-paper-
 "fa fa-anchor","fa fa-anchor","fa fa-bolt","fa fa-bolt","fa fa-cube","fa fa-cube",
 "fa fa-leaf","fa fa-leaf","fa fa-bicycle","fa fa-bicycle","fa fa-bomb","fa fa-bomb"];
 //Stores the array of open cards turned on the table.
-var openCards=[];
+
 //Stores the shuffled cards when game begins.
 var shuffledDeck=[];
-var cardsUp=0;
-var movesCount=0;
+
+
 
 /*
  * Display the cards on the page
@@ -50,6 +50,7 @@ for (var i = 0;i < Cards.length;i++){
 
 
 //Restart the game and reload the table.
+
 $('.restart').click(function(){
   location.reload();
  });
@@ -81,12 +82,18 @@ function clock(){
 }
 
 function endGame(){
+var modalReplay=$('.modal-element').eq(3);
 var modalStars=$('.modal-element').eq(2);
 var modalMoves=$('.modal-element').eq(1);
 var modalTime=$('.modal-element').eq(0);
+
 $('.stars').clone().appendTo(modalStars);
 $('.moves').clone().appendTo(modalMoves);
 $('.timer').clone().appendTo(modalTime);
+$('.restart').clone().appendTo(modalReplay);
+$('.restart').click(function(){
+  location.reload();
+ });
 }
 
 function startTime(){
@@ -103,9 +110,12 @@ function stopTime(){
     endGame();
   }
 }
-
+let openCards=[];
+let cardsUp=0;
+let movesCount=0;
 $('.deck').on('click','.card', function(event){
     startTime();
+
     /*Essential condition for flipping a card i.e. a card may be flipped only if class='card' is present which is true always and only one other card is open.*/
     if($(this).attr('class')==='card' && openCards.length<2){
     //Class name of a open card is pushed to opencards array when only one card is opened.

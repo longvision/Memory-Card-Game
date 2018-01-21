@@ -39,8 +39,8 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
+    width: 650px;
+    height: 650px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
@@ -86,9 +86,9 @@ h1 {
  */
 
 .score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+  text-align: center;
+  width: 660px;
+  margin-bottom: 10px;
 }
 
 .score-panel .stars,
@@ -106,8 +106,21 @@ h1 {
 }
 
 .score-panel .restart {
-    float: right;
+
     cursor: pointer;
+    border-radius: 107px 107px 107px 107px;
+    -moz-border-radius: 107px 107px 107px 107px;
+    -webkit-border-radius: 107px 107px 107px 107px;
+    border: 8px inset #02ccba;
+}
+
+.modal-content .restart {
+  float: right;
+  cursor: pointer;
+  border-radius: 107px 107px 107px 107px;
+  -moz-border-radius: 107px 107px 107px 107px;
+  -webkit-border-radius: 107px 107px 107px 107px;
+  border: 8px inset #02ccba;
 }
 
 /*Styles for modal */
@@ -151,4 +164,36 @@ h1 {
     font-size: 3em;
     text-align: center;
     color: white;
+}
+
+@media only screen and (max-width: 480px){
+
+    header {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .score-panel {
+        width: 100%;
+        font-size: 20px;
+        margin: 8px;
+    }
+
+    .deck {
+        width: 300px;
+        height: 300px;
+        padding: 17px;
+        margin:  3em;
+    }
+
+    .deck .card {
+        height: 58px;
+        width: 58px;
+        border-radius: 8px;
+    }
+
+    .deck .card.open {
+      font-size: 15px;
+    }
+
 }
