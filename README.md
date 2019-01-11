@@ -1,5 +1,6 @@
 # Memory Game Project
 
+Clique aqui para entrar no Jogo: [Jogar Agora](https://longvision.github.io/Memory-Card-Game/index.html)
 ## Table of Contents
 
 * [Instructions](#instructions)
